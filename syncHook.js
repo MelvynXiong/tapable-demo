@@ -1,3 +1,6 @@
+// 串行同步执行
+// 不关心事件处理函数的返回值
+// 在触发事件之后，会按照事件注册的先后顺序执行所有的事件处理函数
 const { SyncHook } = require('tapable')
 
 // 这里的参数数组决定了事件触发时传进监听函数的参数
@@ -18,6 +21,9 @@ class MockSyncHook {
     this.args = args
     this.tasks = []
   }
+  // name 为事件名称，一般用于存储事件对应的插件名称
+  // 随便取，起注释作用
+  // task 为事件处理函数
   tap(name, task) {
     this.tasks.push(task)
   }
