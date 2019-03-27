@@ -14,8 +14,8 @@ syncHook.tap('second', (name, age) => console.log('2', name, age))
 syncHook.tap('third', (name, age) => console.log('3', name, age))
 
 // 触发事件, 让监听函数执行
-syncHook.call('xiong', 20)
-
+const test = syncHook.call('xiong', 20)
+console.log(test)
 class MockSyncHook {
   constructor(args) {
     this.args = args

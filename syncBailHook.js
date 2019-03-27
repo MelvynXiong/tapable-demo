@@ -9,12 +9,13 @@ const syncBailHook = new SyncBailHook(['name', 'age'])
 syncBailHook.tap('first', (name, age) => console.log('1', name, age))
 syncBailHook.tap('second', (name, age) => {
   console.log('2', name, age)
-  return null
+  return 2
 })
 syncBailHook.tap('third', (name, age) => console.log('3', name, age))
 
 // 触发事件,让监听函数执行
-syncBailHook.call('xiong', 23)
+const test = syncBailHook.call('xiong', 23)
+console.log(test)
 
 class MockSyncBailHook {
   constructor(args) {
