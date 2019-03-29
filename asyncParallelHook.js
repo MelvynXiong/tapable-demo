@@ -24,7 +24,7 @@ asyncParallelHook.tapAsync('second', (name, age, done) => {
     console.timeEnd('time')
   }, 3000)
 })
-asyncParallelHook.tapAsync('first', (name, age, done) => {
+asyncParallelHook.tapAsync('third', (name, age, done) => {
   setTimeout(() => {
     console.log('3', name, age, new Date())
     done()
