@@ -9,7 +9,7 @@ const syncBailHook = new SyncBailHook(['name', 'age'])
 syncBailHook.tap('first', (name, age) => console.log('1', name, age))
 syncBailHook.tap('second', (name, age) => {
   console.log('2', name, age)
-  return 2
+  return false
 })
 syncBailHook.tap('third', (name, age) => console.log('3', name, age))
 
@@ -30,9 +30,10 @@ class MockSyncBailHook {
     args = args.slice(0, this.args.length)
     // 依次执行事件处理函数，如果返回值不为空，则停止向下执行
     let i = 0
-    let res = true
-    while(res) {
+    let res = undefined
+    while (res === undefined && i < this.tasks.length) {
       res = this.tasks[i++](...args)
     }
+    return res
   }
 }
